@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af18adf5c52a42b46985b9b910492af6, type: 3}
   m_Name: 1Person
   m_EditorClassIdentifier: 
-  p_Qty: 3
+  p_Qty: 1
   visual: {fileID: 0}
   Is_influenced: 0
