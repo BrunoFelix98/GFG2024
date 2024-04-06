@@ -83,14 +83,15 @@ public class GameData : MonoBehaviour
     }
 
     //Do the opposite of this for "DespawnDrone"
-    public void SpawnDrone()
+    public void SpawnDrone(GameObject target)
     {
         GameObject newDrone = inactiveDronePool[0];
         newDrone.SetActive(true);
         inactiveDronePool.Remove(newDrone);
         newDrone.transform.position = transform.position;
-        DroneBehaviour newPersonBehaviour = newDrone.GetComponent<DroneBehaviour>();
-        newPersonBehaviour.droneData = currentDrone;
+        DroneBehaviour newDroneBehaviour = newDrone.GetComponent<DroneBehaviour>();
+        newDroneBehaviour.droneData = currentDrone;
+        newDroneBehaviour.target = target;
     }
 
     public void DespawnPeople(GameObject people)
@@ -109,12 +110,12 @@ public class GameData : MonoBehaviour
 
     public void DespawnDrone(GameObject drone)
     {
-        DroneBehaviour personBehaviour = drone.GetComponent<DroneBehaviour>();
+        DroneBehaviour droneBehaviour = drone.GetComponent<DroneBehaviour>();
 
         drone.SetActive(false);
         drone.transform.position = this.transform.position;
         inactiveDronePool.Add(drone);
-        personBehaviour.droneData = null;
+        droneBehaviour.droneData = null;
     }
 
     public void SpawnIcon(Vector3 position)
@@ -159,7 +160,7 @@ public class GameData : MonoBehaviour
             {
                 int mealsToSend = Mathf.Min(currentDrone.C_Capacity, remainingPeople);
                 remainingPeople -= mealsToSend;
-                SpawnDrone();
+                SpawnDrone(people);
 
                 if (remainingPeople == 0)
                 {
