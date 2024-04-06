@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,7 @@ public class GameData : MonoBehaviour
     public int currentInfluence;
     public int droneCount;
     public int mealsCount;
+    public LayerMask FoodHouse;
 
     public ScriptableDrone currentDrone;
 
@@ -59,6 +61,20 @@ public class GameData : MonoBehaviour
         StartCoroutine(SpawnPeople());
     }
 
+    private void FixedUpdate()
+    {
+        VerifyFoodHouses();
+    }
+
+    void VerifyFoodHouses()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, currentInfluence, Vector3.zero, out hit, FoodHouse))
+        {
+            hit.collider.gameObject.GetComponent<HouseBehaviour>().houseData.Is_influenced = true;
+        }
+    }
+
     IEnumerator SpawnPeople()
     {
         for (int i = 0; i < 15; i++) //To be changed to a variable so that it can be dependant on the influence size
@@ -93,7 +109,7 @@ public class GameData : MonoBehaviour
         inactivePeoplePool.Remove(newPerson);
 
         Vector3 point;
-        if (RandomPoint(Vector3.zero, 10, out point))
+        if (RandomPoint(Vector3.zero, totalInfluence, out point))
         {
             newPerson.transform.position = point;
         }
