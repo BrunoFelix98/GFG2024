@@ -23,4 +23,9 @@ public class ScriptablePeople : ScriptableObject
         get => p_Qty;
         set => p_Qty = value;
     }
+    public GameObject Visual
+    {
+        get => visual;
+        set => visual = value;
+    }
 }

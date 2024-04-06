@@ -77,7 +77,9 @@ public class GameData : MonoBehaviour
         newPerson.transform.position = transform.position; //Change to navmesh available position
         PeopleBehaviour newPersonBehaviour = newPerson.GetComponent<PeopleBehaviour>();
         int random = Random.Range(0, peopleTypes.Count);
-        newPersonBehaviour.peopleData = peopleTypes[random];
+        newPersonBehaviour.peopleQuantity = peopleTypes[random].P_Qty;
+        newPersonBehaviour.peopleVisuals = peopleTypes[random].Visual;
+        newPersonBehaviour.peopleIsInfluenced = peopleTypes[random].Is_influenced;
     }
 
     //Do the opposite of this for "DespawnDrone"
@@ -93,39 +95,85 @@ public class GameData : MonoBehaviour
 
     public void DespawnPeople(GameObject people)
     {
-        //Handle the despawning of people on the streets using a pool (João)
+        PeopleBehaviour personBehaviour = people.GetComponent<PeopleBehaviour>();
+        totalInfluence += personBehaviour.peopleQuantity;
+        currentInfluence += personBehaviour.peopleQuantity;
+
+        people.SetActive(false);
+        people.transform.position = this.transform.position;
+        inactivePeoplePool.Add(people);
+        personBehaviour.peopleQuantity = 0;
+        personBehaviour.peopleVisuals = null;
+        personBehaviour.peopleIsInfluenced = false;
     }
 
     public void DespawnDrone(GameObject drone)
     {
-        //Handle the despawning of drones using a pool (João)
+        DroneBehaviour personBehaviour = drone.GetComponent<DroneBehaviour>();
+
+        drone.SetActive(false);
+        drone.transform.position = this.transform.position;
+        inactiveDronePool.Add(drone);
+        personBehaviour.droneData = null;
     }
 
     public void SpawnIcon(Vector3 position)
     {
-        //Handle spawning of the icons on top of the houses (Rodrigo)
+        //Handle spawning of the icons on top of the houses (Rodrigo) (the popup)
     }
 
-    public void ReduceMeals(int quantity)
+    public void AddMeals(int quantity)
+    {
+        mealsCount += quantity;
+    }
+
+    public void AddDrone(int quantity)
+    {
+        droneCount += quantity;
+    }
+
+    public bool HasEnoughMeals(int quantity)
     {
         if (mealsCount - quantity < 0)
         {
-            print("You dont have enough meals"); //Change to a visual representation (Ariel(visuals) Bruno(implementation))
+            return false;
         }
         else
         {
-            mealsCount -= quantity;
+            return true;
         }
     }
 
     public void SendDrone(int peopleAmount, GameObject people)
     {
-        if (peopleAmount <= currentDrone.C_Capacity)
+        if (HasEnoughMeals(peopleAmount))
         {
-            SpawnDrone();
-            //Call "DespawnDrone(drone)" whenever the drone reaches the destination, as well as "DespawnPeople"
-            //Object pool drone objects with navMeshAgent to get to the people
-            //Call "DespawnPeople(people)"
+            int remainingPeople = peopleAmount;
+            int dronesNeeded = peopleAmount / currentDrone.C_Capacity;
+            if (peopleAmount % currentDrone.C_Capacity != 0)
+            {
+                dronesNeeded++;
+            }
+
+            for (int i = 1; i <= dronesNeeded; i++)
+            {
+                int mealsToSend = Mathf.Min(currentDrone.C_Capacity, remainingPeople);
+                remainingPeople -= mealsToSend;
+                SpawnDrone();
+
+                if (remainingPeople == 0)
+                {
+                    break;
+                }
+
+                //Call "DespawnDrone(drone)" whenever the drone reaches the destination, as well as "DespawnPeople"
+                //Object pool drone objects with navMeshAgent to get to the people
+                //Call "DespawnPeople(people)"
+            }
+        }
+        else
+        {
+            print("You don't have enough meals to send!"); //Change to a visual representation (Ariel(visuals) Bruno(implementation))
         }
     }
 }

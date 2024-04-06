@@ -15,4 +15,9 @@ public class ScriptableHouse : ScriptableObject
         get => is_Influenced;
         set => is_Influenced = value;
     }
+    public int Food_Quantity
+    {
+        get => food_Quantity;
+        set => food_Quantity = value;
+    }
 }

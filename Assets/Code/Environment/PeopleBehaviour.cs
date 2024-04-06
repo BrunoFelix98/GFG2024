@@ -6,7 +6,9 @@ public class PeopleBehaviour : MonoBehaviour
 {
     public GameData data;
     public bool clickable;
-    public ScriptablePeople peopleData;
+    public int peopleQuantity;
+    public GameObject peopleVisuals;
+    public bool peopleIsInfluenced;
     public GameObject child;
     // Start is called before the first frame update
     void Start()
@@ -28,13 +30,18 @@ public class PeopleBehaviour : MonoBehaviour
                 {
                     if (hit.collider.tag.Equals("People"))
                     {
-                        if (peopleData.Is_influenced)
+                        if (peopleIsInfluenced)
                         {
                             SendDrone();
                         }
                     }
                 }
             }
+        }
+
+        if (peopleQuantity < 1)
+        {
+            data.DespawnPeople(this.gameObject);
         }
     }
 
@@ -46,8 +53,11 @@ public class PeopleBehaviour : MonoBehaviour
 
     public void SendDrone()
     {
-        data.SendDrone(peopleData.P_Qty, gameObject);
+        if (data.droneCount > 0)
+        {
+            data.SendDrone(peopleQuantity, gameObject);
 
-        clickable = false;
+            clickable = false;
+        }
     }
 }

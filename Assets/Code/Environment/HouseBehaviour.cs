@@ -13,6 +13,15 @@ public class HouseBehaviour : MonoBehaviour
         data = GameData.instance;
         clickable = false;
 
+        if(insideInfluenceArea())
+        {
+            houseData.Is_influenced = true;
+        }
+        else
+        {
+            houseData.Is_influenced = false;
+        }
+
         StartCoroutine(GiveFood());
     }
 
@@ -25,20 +34,43 @@ public class HouseBehaviour : MonoBehaviour
             {
                 data.SpawnIcon(this.transform.position);
             }
+
+            if (Input.GetMouseButton(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.tag.Equals("People"))
+                    {
+                        if (houseData.Is_influenced)
+                        {
+                            GetMeals();
+                            clickable = false;
+                        }
+                    }
+                }
+            }
         }
     }
 
     IEnumerator GiveFood()
     {
-        clickable = true;
-        yield return new WaitForSeconds(3.0f);
+        if (houseData.Is_influenced)
+        {
+            clickable = true;
+            yield return new WaitForSeconds(3.0f);
+        }
     }
 
-    private void OnMouseDown()
+    public void GetMeals()
     {
-        if (clickable)
-        {
-            //Handle getting meals
-        }
+        data.AddMeals(houseData.Food_Quantity);
+    }
+
+    public bool insideInfluenceArea()
+    {
+        //Check if the house is inside the area of influence
+        return false; //Temporary
     }
 }

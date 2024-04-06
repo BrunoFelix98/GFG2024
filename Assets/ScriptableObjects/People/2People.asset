@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p_Qty: 2
   visual: {fileID: 0}
-  Is_influenced: 0
+  is_Influenced: 1
