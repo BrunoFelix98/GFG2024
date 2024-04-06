@@ -1,71 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class HouseBehaviour : MonoBehaviour
 {
     public GameData data;
     public bool clickable;
-    public ScriptableHouse houseData;
+    public int foodQuantity;
+    public bool isInfluenced;
+    public GameObject popUp;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
         data = GameData.instance;
         clickable = false;
 
-        if(insideInfluenceArea())
+        popUp.SetActive(false);
+
+        if (insideInfluenceArea())
         {
-            houseData.Is_influenced = true;
+            isInfluenced = true;
         }
         else
         {
-            houseData.Is_influenced = false;
+            isInfluenced = false;
         }
-
-        StartCoroutine(GiveFood());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (timer <= 0)
+        {
+            if (isInfluenced)
+            {
+                clickable = true;
+                timer = 3;
+            }
+        }
+        else
+        {
+            timer -= Time.fixedDeltaTime;
+        }
+
+
         if (clickable)
         {
-            if(houseData.Is_influenced)
-            {
-                data.SpawnIcon(this.transform.position);
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.tag.Equals("People"))
-                    {
-                        if (houseData.Is_influenced)
-                        {
-                            GetMeals();
-                            clickable = false;
-                        }
-                    }
-                }
-            }
+            data.SpawnIcon(this);
         }
     }
 
-    IEnumerator GiveFood()
+    private void OnMouseDown()
     {
-        if (houseData.Is_influenced)
+        if (clickable)
         {
-            clickable = true;
-            yield return new WaitForSeconds(3.0f);
+            GetMeals();
+            popUp.SetActive(false);
+            clickable = false;
         }
     }
 
     public void GetMeals()
     {
-        data.AddMeals(houseData.Food_Quantity);
+        data.AddMeals(foodQuantity);
     }
 
     public bool insideInfluenceArea()

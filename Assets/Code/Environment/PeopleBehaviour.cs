@@ -10,33 +10,27 @@ public class PeopleBehaviour : MonoBehaviour
     public GameObject peopleVisuals;
     public bool peopleIsInfluenced;
     public GameObject child;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
         data = GameData.instance;
         clickable = false;
-        StartCoroutine(BecomeHungry());
     }
 
     void FixedUpdate()
     {
-        if (clickable)
+        if (timer <= 0)
         {
-            if (Input.GetMouseButton(0))
+            if (peopleIsInfluenced)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.tag.Equals("People"))
-                    {
-                        if (peopleIsInfluenced)
-                        {
-                            SendDrone();
-                        }
-                    }
-                }
+                clickable = true;
+                timer = 3;
             }
+        }
+        else
+        {
+            timer -= Time.fixedDeltaTime;
         }
 
         if (peopleQuantity < 1)
@@ -45,10 +39,12 @@ public class PeopleBehaviour : MonoBehaviour
         }
     }
 
-    IEnumerator BecomeHungry()
+    private void OnMouseDown()
     {
-        clickable = true;
-        yield return new WaitForSeconds(5.0f);
+        if (clickable)
+        {
+            clickable = false;
+        }
     }
 
     public void SendDrone()

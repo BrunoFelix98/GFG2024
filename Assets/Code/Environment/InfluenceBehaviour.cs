@@ -5,8 +5,7 @@ using UnityEngine;
 public class InfluenceBehaviour : MonoBehaviour
 {
     public GameData data;
-    //Collider
-    //Collider visual
+    //Visual
 
     // Start is called before the first frame update
     void Start()

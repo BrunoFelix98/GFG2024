@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
@@ -68,10 +69,17 @@ public class GameData : MonoBehaviour
 
     void VerifyFoodHouses()
     {
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, currentInfluence, Vector3.zero, out hit, FoodHouse))
+        List<GameObject> allHouses = GameObject.FindGameObjectsWithTag("House").ToList();
+
+        for (int i = 0; i < allHouses.Count; i++)
         {
-            hit.collider.gameObject.GetComponent<HouseBehaviour>().houseData.Is_influenced = true;
+            if (Vector3.Distance(transform.position, new Vector3(allHouses.ElementAt(i).transform.position.x, 0, allHouses.ElementAt(i).transform.position.z)) < totalInfluence)
+            {
+                if (allHouses.ElementAt(i).GetComponent<HouseBehaviour>())
+                {
+                    allHouses.ElementAt(i).GetComponent<HouseBehaviour>().isInfluenced = true;
+                }
+            }
         }
     }
 
@@ -157,9 +165,9 @@ public class GameData : MonoBehaviour
         droneBehaviour.droneData = null;
     }
 
-    public void SpawnIcon(Vector3 position)
+    public void SpawnIcon(HouseBehaviour house)
     {
-        //Handle spawning of the icons on top of the houses (Rodrigo) (the popup)
+        house.popUp.SetActive(true);
     }
 
     public void AddMeals(int quantity)
@@ -205,10 +213,6 @@ public class GameData : MonoBehaviour
                 {
                     break;
                 }
-
-                //Call "DespawnDrone(drone)" whenever the drone reaches the destination, as well as "DespawnPeople"
-                //Object pool drone objects with navMeshAgent to get to the people
-                //Call "DespawnPeople(people)"
             }
         }
         else
