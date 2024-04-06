@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 654487063578974405}
   m_Layer: 0
   m_Name: PopUp
-  m_TagString: Untagged
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4807058062523455372}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: House
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,17 +200,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 70b7e3db5d85c2048bc5686d24194909,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -84.5
+      value: -0.5999985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70b7e3db5d85c2048bc5686d24194909,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.700001
+      value: 7.590001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70b7e3db5d85c2048bc5686d24194909,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.300001
+      value: 30.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70b7e3db5d85c2048bc5686d24194909,
         type: 3}
@@ -322,7 +322,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 200, y: 200, z: 292.21674}
+  m_Size: {x: 250, y: 250, z: 250}
   m_Center: {x: 0, y: -0.000019073486, z: 46.108368}
 --- !u!114 &4285480667868494785
 MonoBehaviour:
@@ -353,7 +353,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 100.00001, y: 100.00001, z: 146.108}
+  m_Extents: {x: 125, y: 125, z: 125}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -376,6 +376,7 @@ MonoBehaviour:
   foodQuantity: 4
   isInfluenced: 0
   popUp: {fileID: 2890195464532883127}
+  timer: 0
 --- !u!4 &4117682680374568024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 70b7e3db5d85c2048bc5686d24194909,
