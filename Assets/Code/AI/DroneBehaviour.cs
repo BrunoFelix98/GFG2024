@@ -15,7 +15,7 @@ public class DroneBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //If drone reaches destination, call "data.DespawnDrone(this)" (Rodrigo)
     }
 
     public void GiveMeals()

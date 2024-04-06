@@ -41,6 +41,7 @@ public class GameData : MonoBehaviour
         for (int i = 0; i < 30; i++)
         {
             GameObject peopleInstance = Instantiate(peoplePrefab, transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
             peopleInstance.SetActive(false);
         }
 
@@ -48,19 +49,46 @@ public class GameData : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             GameObject droneInstance = Instantiate(dronePrefab, transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
             droneInstance.SetActive(false);
         }
+
+        currentDrone = droneTypes[0];
+
+        StartCoroutine(SpawnPeople());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnPeople()
     {
-
+        for (int i = 0; i < 15; i++) //To be changed to a variable so that it can be dependant on the influence size
+        {
+            yield return new WaitForSeconds(2f);
+            SpawnPerson();
+        }
+        
     }
 
-    public void SpawnIcon(Vector3 position)
+    //Do the opposite of this for "DespawnPeople"
+    public void SpawnPerson()
     {
-        //Handle spawning of the icons on top of the houses (Rodrigo)
+        GameObject newPerson = inactivePeoplePool[0];
+        newPerson.SetActive(true);
+        inactivePeoplePool.Remove(newPerson);
+        newPerson.transform.position = transform.position; //Change to navmesh available position
+        PeopleBehaviour newPersonBehaviour = newPerson.GetComponent<PeopleBehaviour>();
+        int random = Random.Range(0, peopleTypes.Count);
+        newPersonBehaviour.peopleData = peopleTypes[random];
+    }
+
+    //Do the opposite of this for "DespawnDrone"
+    public void SpawnDrone()
+    {
+        GameObject newDrone = inactiveDronePool[0];
+        newDrone.SetActive(true);
+        inactiveDronePool.Remove(newDrone);
+        newDrone.transform.position = transform.position;
+        DroneBehaviour newPersonBehaviour = newDrone.GetComponent<DroneBehaviour>();
+        newPersonBehaviour.droneData = currentDrone;
     }
 
     public void DespawnPeople(GameObject people)
@@ -68,16 +96,36 @@ public class GameData : MonoBehaviour
         //Handle the despawning of people on the streets using a pool (João)
     }
 
-    public void ReduceMeals(int quantity)
+    public void DespawnDrone(GameObject drone)
     {
-        mealsCount -= quantity;
+        //Handle the despawning of drones using a pool (João)
     }
 
-    public void SendDrone(Vector3 position, int peopleAmount)
+    public void SpawnIcon(Vector3 position)
+    {
+        //Handle spawning of the icons on top of the houses (Rodrigo)
+    }
+
+    public void ReduceMeals(int quantity)
+    {
+        if (mealsCount - quantity < 0)
+        {
+            print("You dont have enough meals"); //Change to a visual representation (Ariel(visuals) Bruno(implementation))
+        }
+        else
+        {
+            mealsCount -= quantity;
+        }
+    }
+
+    public void SendDrone(int peopleAmount, GameObject people)
     {
         if (peopleAmount <= currentDrone.C_Capacity)
         {
-            //Handle object pooling (Khevynn)
+            SpawnDrone();
+            //Call "DespawnDrone(drone)" whenever the drone reaches the destination, as well as "DespawnPeople"
+            //Object pool drone objects with navMeshAgent to get to the people
+            //Call "DespawnPeople(people)"
         }
     }
 }

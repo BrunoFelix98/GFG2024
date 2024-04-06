@@ -217,6 +217,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &171200989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171200991}
+  - component: {fileID: 171200990}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &171200990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171200989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce3555b2b7c16f468d5dabe294a6b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peopleTypes:
+  - {fileID: 11400000, guid: a43370e134d592d45bd0a5ced04fb575, type: 2}
+  - {fileID: 11400000, guid: 632a831a1c94cf948afef4434d028aa4, type: 2}
+  - {fileID: 11400000, guid: 10ecade84e83a724ba60d06ef72ed7b8, type: 2}
+  houseTypes:
+  - {fileID: 11400000, guid: 8ed64be0308d52945a7b6d1fa3adb437, type: 2}
+  - {fileID: 11400000, guid: 4480bac211832b04c91f485419707422, type: 2}
+  - {fileID: 11400000, guid: 712f8239aef7ea643bec35bdbdd35b49, type: 2}
+  droneTypes:
+  - {fileID: 11400000, guid: 2902065533b59b04a95f150418146550, type: 2}
+  - {fileID: 11400000, guid: c90e4926ed9c97a4b9940539fb3db08b, type: 2}
+  - {fileID: 11400000, guid: deb1641260d7a084f82aa722d3fb30b4, type: 2}
+  inactivePeoplePool: []
+  inactiveDronePool: []
+  peoplePrefab: {fileID: 3767057162746148856, guid: b09a80e5dc7def842831f1a060ffd514,
+    type: 3}
+  dronePrefab: {fileID: 1082047489373465882, guid: 5115034e47feb654f966f1ea22ead980,
+    type: 3}
+  totalInfluence: 0
+  currentInfluence: 0
+  droneCount: 0
+  mealsCount: 0
+  currentDrone: {fileID: 0}
+--- !u!4 &171200991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171200989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295450458
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,3 +382,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 295450461}
   - {fileID: 2574151}
+  - {fileID: 171200991}

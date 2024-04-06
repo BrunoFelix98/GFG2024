@@ -7,12 +7,12 @@ public class PeopleBehaviour : MonoBehaviour
     public GameData data;
     public bool clickable;
     public ScriptablePeople peopleData;
+    public GameObject child;
     // Start is called before the first frame update
     void Start()
     {
         data = GameData.instance;
         clickable = false;
-
         StartCoroutine(BecomeHungry());
     }
 
@@ -20,9 +20,20 @@ public class PeopleBehaviour : MonoBehaviour
     {
         if (clickable)
         {
-            if (peopleData.Is_influenced)
+            if (Input.GetMouseButton(0))
             {
-                data.DespawnPeople(this.gameObject);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.tag.Equals("People"))
+                    {
+                        if (peopleData.Is_influenced)
+                        {
+                            SendDrone();
+                        }
+                    }
+                }
             }
         }
     }
@@ -33,17 +44,9 @@ public class PeopleBehaviour : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
     }
 
-    private void OnMouseDown()
-    {
-        if (clickable)
-        {
-            SendDrone();
-        }
-    }
-
     public void SendDrone()
     {
-        data.SendDrone(this.transform.position, peopleData.P_Qty);
+        data.SendDrone(peopleData.P_Qty, gameObject);
 
         clickable = false;
     }
