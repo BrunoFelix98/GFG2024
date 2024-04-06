@@ -10,5 +10,17 @@ public class ScriptablePeople : ScriptableObject
     [SerializeField]
     private GameObject visual;
     [SerializeField]
-    private bool Is_influenced;
+    private bool is_Influenced;
+
+    public bool Is_influenced
+    {
+        get => is_Influenced;
+        set => is_Influenced = value;
+    }
+
+    public int P_Qty
+    {
+        get => p_Qty;
+        set => p_Qty = value;
+    }
 }

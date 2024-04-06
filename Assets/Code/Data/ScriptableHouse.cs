@@ -6,7 +6,13 @@ using UnityEngine;
 public class ScriptableHouse : ScriptableObject
 {
     [SerializeField]
-    private int Food_Quantity;
+    private int food_Quantity;
     [SerializeField]
-    private bool Is_influenced;
+    private bool is_Influenced;
+
+    public bool Is_influenced
+    {
+        get => is_Influenced;
+        set => is_Influenced = value;
+    }
 }
