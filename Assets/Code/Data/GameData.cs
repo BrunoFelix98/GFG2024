@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameData : MonoBehaviour
 {
@@ -68,13 +69,35 @@ public class GameData : MonoBehaviour
         
     }
 
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
+    }
+
     //Do the opposite of this for "DespawnPeople"
     public void SpawnPerson()
     {
         GameObject newPerson = inactivePeoplePool[0];
         newPerson.SetActive(true);
         inactivePeoplePool.Remove(newPerson);
-        newPerson.transform.position = transform.position; //Change to navmesh available position
+
+        Vector3 point;
+        if (RandomPoint(Vector3.zero, 10, out point))
+        {
+            newPerson.transform.position = point;
+        }
+
         PeopleBehaviour newPersonBehaviour = newPerson.GetComponent<PeopleBehaviour>();
         int random = Random.Range(0, peopleTypes.Count);
         newPersonBehaviour.peopleQuantity = peopleTypes[random].P_Qty;
@@ -176,5 +199,11 @@ public class GameData : MonoBehaviour
         {
             print("You don't have enough meals to send!"); //Change to a visual representation (Ariel(visuals) Bruno(implementation))
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(Vector3.zero, totalInfluence);
     }
 }
