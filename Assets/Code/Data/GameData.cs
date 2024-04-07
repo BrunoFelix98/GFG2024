@@ -120,7 +120,7 @@ public class GameData : MonoBehaviour
     {
         for (int i = 0; i < 15; i++) //To be changed to a variable so that it can be dependant on the influence size
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(20f);
             SpawnPerson();
         }
         
