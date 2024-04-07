@@ -51,6 +51,7 @@ MonoBehaviour:
   peopleVisuals: {fileID: 4422453163914895819}
   peopleIsInfluenced: 0
   child: {fileID: 4422453163914895819}
+  timer: 0
 --- !u!1001 &3139074176361110859
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 3People
   m_EditorClassIdentifier: 
   p_Qty: 3
-  visual: {fileID: 0}
+  visual: {fileID: 3767057162746148856, guid: 8b1873fd5011ed349b69268d05322e07, type: 3}
   is_Influenced: 1

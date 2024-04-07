@@ -14,6 +14,8 @@ public class GameData : MonoBehaviour
     public List<GameObject> inactivePeoplePool = new List<GameObject>();
     public List<GameObject> inactiveDronePool = new List<GameObject>();
 
+    public List<GameObject> points = new List<GameObject>();
+
     public GameObject peoplePrefab;
     public GameObject dronePrefab;
 
@@ -57,6 +59,8 @@ public class GameData : MonoBehaviour
             droneInstance.SetActive(false);
         }
 
+        points = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
+
         currentDrone = droneTypes[0];
 
         StartCoroutine(SpawnPeople());
@@ -93,21 +97,6 @@ public class GameData : MonoBehaviour
         
     }
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        for (int i = 0; i < 30; i++)
-        {
-            Vector3 randomPoint = center + Random.insideUnitSphere * range;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                result = hit.position;
-                return true;
-            }
-        }
-        result = Vector3.zero;
-        return false;
-    }
 
     //Do the opposite of this for "DespawnPeople"
     public void SpawnPerson()
@@ -116,11 +105,8 @@ public class GameData : MonoBehaviour
         newPerson.SetActive(true);
         inactivePeoplePool.Remove(newPerson);
 
-        Vector3 point;
-        if (RandomPoint(Vector3.zero, totalInfluence, out point))
-        {
-            newPerson.transform.position = point;
-        }
+        Vector3 point = points.ElementAt(Random.Range(0, points.Count)).transform.position;
+        newPerson.transform.position = point + new Vector3(0,6,0);
 
         PeopleBehaviour newPersonBehaviour = newPerson.GetComponent<PeopleBehaviour>();
         int random = Random.Range(0, peopleTypes.Count);
