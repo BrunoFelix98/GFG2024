@@ -11,6 +11,7 @@ public class PeopleBehaviour : MonoBehaviour
     public bool peopleIsInfluenced;
     public GameObject child;
     public float timer;
+    public Material clickedMaterial;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,11 @@ public class PeopleBehaviour : MonoBehaviour
     {
         if (clickable)
         {
+            Renderer[] array = GetComponentsInChildren<Renderer>();
+            foreach(Renderer renderer in array)
+            {
+                renderer.material = clickedMaterial;
+            }
             SendDrone();
         }
     }

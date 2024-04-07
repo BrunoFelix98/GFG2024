@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2209397725322750324}
@@ -53,7 +53,9 @@ MonoBehaviour:
   peopleVisuals: {fileID: 5540496828498589446}
   peopleIsInfluenced: 0
   child: {fileID: 5540496828498589446}
+  visual: {fileID: 4253591883884731659}
   timer: 0
+  clickedMaterial: {fileID: 2100000, guid: 004a3e1d41c3bd246b333bab220d32a4, type: 2}
 --- !u!136 &2760305801211589145
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -136,6 +138,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656645711358460749, guid: 0e3d22d1c685c684e82f808a1341b1f4,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656645711358460749, guid: 0e3d22d1c685c684e82f808a1341b1f4,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3538578913055503317, guid: 0e3d22d1c685c684e82f808a1341b1f4,
         type: 3}
@@ -234,6 +246,12 @@ PrefabInstance:
 --- !u!4 &2209397725322750324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3538578913055503317, guid: 0e3d22d1c685c684e82f808a1341b1f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3437043951712295585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4253591883884731659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1492131886843578282, guid: 0e3d22d1c685c684e82f808a1341b1f4,
     type: 3}
   m_PrefabInstance: {fileID: 3437043951712295585}
   m_PrefabAsset: {fileID: 0}

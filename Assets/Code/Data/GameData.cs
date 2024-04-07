@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,7 +17,7 @@ public class GameData : MonoBehaviour
 
     public List<GameObject> points = new List<GameObject>();
 
-    public GameObject peoplePrefab;
+    public List<GameObject> peoplePrefabs = new List<GameObject>();
     public GameObject dronePrefab;
 
     public static GameData instance;
@@ -29,6 +30,14 @@ public class GameData : MonoBehaviour
     public InfluenceBehaviour influenceBehaviour;
 
     public ScriptableDrone currentDrone;
+
+    [Header("Sons")]
+    [SerializeField] private AudioSource background;
+    [SerializeField] private AudioSource eating;
+
+    [Header("Texts")]
+    [SerializeField] private TMP_Text droneCountText;
+    [SerializeField] private TMP_Text mealsCountText;
 
     private void Awake()
     {
@@ -44,10 +53,25 @@ public class GameData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        background.Play();
         //Create pool for people
         for (int i = 0; i < 30; i++)
         {
-            GameObject peopleInstance = Instantiate(peoplePrefab, transform.position, Quaternion.identity);
+            GameObject peopleInstance = Instantiate(peoplePrefabs[0], transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
+            peopleInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 30; i++)
+        {
+            GameObject peopleInstance = Instantiate(peoplePrefabs[1], transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
+            peopleInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 30; i++)
+        {
+            GameObject peopleInstance = Instantiate(peoplePrefabs[2], transform.position, Quaternion.identity);
             inactivePeoplePool.Add(peopleInstance);
             peopleInstance.SetActive(false);
         }
@@ -72,6 +96,8 @@ public class GameData : MonoBehaviour
     private void FixedUpdate()
     {
         VerifyFoodHouses();
+        droneCountText.text = droneCount.ToString();
+        mealsCountText.text = mealsCount.ToString();
     }
 
     void VerifyFoodHouses()
@@ -104,7 +130,8 @@ public class GameData : MonoBehaviour
     //Do the opposite of this for "DespawnPeople"
     public void SpawnPerson()
     {
-        GameObject newPerson = inactivePeoplePool[0];
+        int random = Random.Range(0, peopleTypes.Count);
+        GameObject newPerson = inactivePeoplePool[random * 30];
         newPerson.SetActive(true);
         inactivePeoplePool.Remove(newPerson);
 
@@ -112,7 +139,6 @@ public class GameData : MonoBehaviour
         newPerson.transform.position = point + new Vector3(0,6,0);
 
         PeopleBehaviour newPersonBehaviour = newPerson.GetComponent<PeopleBehaviour>();
-        int random = Random.Range(0, peopleTypes.Count);
         newPersonBehaviour.peopleQuantity = peopleTypes[random].P_Qty;
         newPersonBehaviour.peopleVisuals = peopleTypes[random].Visual;
         newPersonBehaviour.peopleIsInfluenced = peopleTypes[random].Is_influenced;
@@ -138,6 +164,7 @@ public class GameData : MonoBehaviour
         totalInfluence += personBehaviour.peopleQuantity;
         currentInfluence += personBehaviour.peopleQuantity;
 
+        eating.Play();
         people.SetActive(false);
         people.transform.position = this.transform.position;
         inactivePeoplePool.Add(people);
@@ -154,6 +181,7 @@ public class GameData : MonoBehaviour
         drone.SetActive(false);
         drone.transform.position = this.transform.position;
         inactiveDronePool.Add(drone);
+        droneCount--;
         droneBehaviour.droneData = null;
     }
 
@@ -199,6 +227,7 @@ public class GameData : MonoBehaviour
             {
                 int mealsToSend = Mathf.Min(currentDrone.C_Capacity, remainingPeople);
                 remainingPeople -= mealsToSend;
+                mealsCount -= mealsToSend;
                 SpawnDrone(people, mealsToSend);
 
                 if (remainingPeople == 0)

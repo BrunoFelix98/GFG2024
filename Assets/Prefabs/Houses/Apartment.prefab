@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: fa20240da6ec1204bb94bb6f2346a67f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -407,6 +407,8 @@ MonoBehaviour:
   isInfluenced: 0
   popUp: {fileID: 1159823636909102811}
   timer: 0
+  minTimer: 8
+  maxTimer: 10
 --- !u!4 &4528054110026004065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6966d4909b49a44098d2107d206ddf6,

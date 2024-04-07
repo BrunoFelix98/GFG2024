@@ -11,6 +11,7 @@ public class HouseBehaviour : MonoBehaviour
     public bool isInfluenced;
     public GameObject popUp;
     public float timer;
+    public float minTimer, maxTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,7 @@ public class HouseBehaviour : MonoBehaviour
             if (isInfluenced)
             {
                 clickable = true;
-                timer = 3;
+                timer = Random.Range(minTimer, maxTimer);
             }
         }
         else

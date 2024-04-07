@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8651093968764960789}
   m_Father: {fileID: 0}
@@ -53,7 +53,9 @@ MonoBehaviour:
   peopleVisuals: {fileID: 2867801585052296209}
   peopleIsInfluenced: 0
   child: {fileID: 2867801585052296209}
+  visual: {fileID: 2272088467758745579}
   timer: 0
+  clickedMaterial: {fileID: 2100000, guid: 004a3e1d41c3bd246b333bab220d32a4, type: 2}
 --- !u!136 &2912459690078126897
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -107,6 +109,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099934322708942732}
     m_Modifications:
+    - target: {fileID: -8304972664629265925, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -8304972664629265925, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4481656972204555806, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,10 +225,17 @@ PrefabInstance:
       value: 1Personv
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 420067689767882232, guid: c72f7f6fb6c07c447ac45cc7862cc58a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72f7f6fb6c07c447ac45cc7862cc58a, type: 3}
+--- !u!1 &2272088467758745579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6464005804656736736, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5061156907761614347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2867801585052296209 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7057331091933043226, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
