@@ -77,7 +77,7 @@ public class GameData : MonoBehaviour
         }
 
         //Create pool for drones
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 2000; i++)
         {
             GameObject droneInstance = Instantiate(dronePrefab, transform.position, Quaternion.identity);
             inactiveDronePool.Add(droneInstance);

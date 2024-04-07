@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour
 {
-    public Button buyFoodBtn;
-    public Button buyDroneBtn;
-    public Button buyDroneUpgradeBtn;
+    public TextMeshProUGUI foodCostTxt;
+    public TextMeshProUGUI droneCostTxt;
+    public TextMeshProUGUI droneUpgradeCostTxt;
+    public TextMeshProUGUI currentInfluence;
 
     public int foodCost;
     public int droneCost;
@@ -18,18 +20,22 @@ public class ShopSystem : MonoBehaviour
     void Start()
     {
         data = GameData.instance;
+
+        foodCostTxt.text = foodCost.ToString();
+        droneCostTxt.text = droneCost.ToString();
+        droneUpgradeCostTxt.text = droneUpgradeCost.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-    }
+        currentInfluence.text = data.currentInfluence.ToString();
+}
 
     public void BuyFood()
     {
         if (data.currentInfluence >= foodCost)
         {
+            data.currentInfluence -= foodCost;
             data.AddMeals(1);
         }
         else
@@ -42,6 +48,7 @@ public class ShopSystem : MonoBehaviour
     {
         if (data.currentInfluence >= droneCost)
         {
+            data.currentInfluence -= droneCost;
             data.AddDrone(1);
         }
         else
@@ -60,6 +67,7 @@ public class ShopSystem : MonoBehaviour
                 {
                     if (data.droneTypes[i+1] != null)
                     {
+                        data.currentInfluence -= droneUpgradeCost;
                         data.currentDrone = data.droneTypes[i + 1];
                     }
                 }

@@ -19,15 +19,6 @@ public class HouseBehaviour : MonoBehaviour
         clickable = false;
 
         popUp.SetActive(false);
-
-        if (insideInfluenceArea())
-        {
-            isInfluenced = true;
-        }
-        else
-        {
-            isInfluenced = false;
-        }
     }
 
     // Update is called once per frame
@@ -66,11 +57,5 @@ public class HouseBehaviour : MonoBehaviour
     public void GetMeals()
     {
         data.AddMeals(foodQuantity);
-    }
-
-    public bool insideInfluenceArea()
-    {
-        //Check if the house is inside the area of influence
-        return false; //Temporary
     }
 }
