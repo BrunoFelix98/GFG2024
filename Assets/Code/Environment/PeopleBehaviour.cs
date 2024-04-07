@@ -9,6 +9,7 @@ public class PeopleBehaviour : MonoBehaviour
     public int peopleQuantity;
     public GameObject peopleVisuals;
     public bool peopleIsInfluenced;
+    public bool hasSentDrone;
     public GameObject child;
     public float timer;
     public Material clickedMaterial;
@@ -17,6 +18,7 @@ public class PeopleBehaviour : MonoBehaviour
     {
         data = GameData.instance;
         clickable = false;
+        hasSentDrone = false;
     }
 
     void FixedUpdate()
@@ -26,6 +28,7 @@ public class PeopleBehaviour : MonoBehaviour
             if (peopleIsInfluenced)
             {
                 clickable = true;
+                hasSentDrone = false;
                 timer = 3;
             }
         }
@@ -49,7 +52,12 @@ public class PeopleBehaviour : MonoBehaviour
             {
                 renderer.material = clickedMaterial;
             }
-            SendDrone();
+
+            if (!hasSentDrone)
+            {
+                SendDrone();
+                hasSentDrone = true;
+            }
         }
     }
 
