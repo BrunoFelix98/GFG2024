@@ -10,6 +10,7 @@ public class ShopSystem : MonoBehaviour
     public TextMeshProUGUI droneCostTxt;
     public TextMeshProUGUI droneUpgradeCostTxt;
     public TextMeshProUGUI currentInfluence;
+    public TextMeshProUGUI currentInfluenceMain;
 
     public int foodCost;
     public int droneCost;
@@ -29,6 +30,7 @@ public class ShopSystem : MonoBehaviour
     private void Update()
     {
         currentInfluence.text = data.currentInfluence.ToString();
+        currentInfluenceMain.text = data.currentInfluence.ToString();
 }
 
     public void BuyFood()
