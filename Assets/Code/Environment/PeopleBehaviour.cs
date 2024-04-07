@@ -43,7 +43,7 @@ public class PeopleBehaviour : MonoBehaviour
     {
         if (clickable)
         {
-            clickable = false;
+            SendDrone();
         }
     }
 

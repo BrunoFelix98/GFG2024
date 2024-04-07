@@ -7,6 +7,7 @@ public class DroneBehaviour : MonoBehaviour
 {
     public GameData data;
     public ScriptableDrone droneData;
+    public int currentCarry;
     public GameObject child;
     public GameObject target;
     public NavMeshAgent agent;
@@ -20,11 +21,10 @@ public class DroneBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If drone reaches destination, call "data.DespawnDrone(this)" (Khevynn)
-        agent.SetDestination(target.transform.position);
-        if(agent.remainingDistance < 1f)
+        // If drone reaches destination, despawn it
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            target.GetComponent<PeopleBehaviour>().peopleQuantity -= droneData.C_Capacity;
+            target.GetComponent<PeopleBehaviour>().peopleQuantity -= currentCarry;
             data.DespawnDrone(this.gameObject);
         }
     }

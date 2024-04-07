@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8641177061003122151}
   - component: {fileID: 7819245739603990483}
+  - component: {fileID: 3642607841331637845}
+  - component: {fileID: 5114209751117176722}
   m_Layer: 0
   m_Name: Drone 2.2
   m_TagString: Untagged
@@ -48,10 +50,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  droneData: {fileID: 0}
+  droneData: {fileID: 11400000, guid: c90e4926ed9c97a4b9940539fb3db08b, type: 2}
+  currentCarry: 0
   child: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23, type: 3}
   target: {fileID: 0}
   agent: {fileID: 0}
+--- !u!195 &3642607841331637845
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082047489373465882}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 10
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 10
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &5114209751117176722
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082047489373465882}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &813817637549631780
 PrefabInstance:
   m_ObjectHideFlags: 0

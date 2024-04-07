@@ -108,15 +108,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 3
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 2
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 0
+    agentClimb: 0
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.6666667
     manualTileSize: 0
     tileSize: 256
     buildHeightMesh: 0
@@ -124,7 +124,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 2c9cc9258dd9e2e42bf354e33c594276, type: 2}
 --- !u!1 &11382048 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5209477219647159865, guid: 42f5e1aa62c74184a91196b7a935dc73,
@@ -572,14 +572,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: deb1641260d7a084f82aa722d3fb30b4, type: 2}
   inactivePeoplePool: []
   inactiveDronePool: []
+  points: []
   peoplePrefab: {fileID: 3767057162746148856, guid: b09a80e5dc7def842831f1a060ffd514,
     type: 3}
   dronePrefab: {fileID: 1082047489373465882, guid: 5115034e47feb654f966f1ea22ead980,
     type: 3}
-  totalInfluence: 100
+  totalInfluence: 200
   currentInfluence: 3
-  droneCount: 3
-  mealsCount: 3
+  droneCount: 300
+  mealsCount: 300
   FoodHouse:
     serializedVersion: 2
     m_Bits: 8
@@ -593,7 +594,7 @@ Transform:
   m_GameObject: {fileID: 171200989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -13.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3576,7 +3577,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 9
   m_IsActive: 1
 --- !u!64 &1143602531
 MeshCollider:
@@ -4383,7 +4384,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.6666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a8ee930ba48a21748bbbed33e1524e23, type: 2}
   m_BuildHeightMesh: 0
@@ -5394,69 +5395,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 44121882}
   m_SourcePrefab: {fileID: 100100000, guid: bb8e88d2b35d7424db6ee2e9f245f37e, type: 3}
---- !u!1 &1784290783
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1784290785}
-  - component: {fileID: 1784290784}
-  m_Layer: 0
-  m_Name: NavMesh Surface
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1784290784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784290783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 3
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 1
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 11993690d001bf34b96d21dce08100f3, type: 2}
-  m_BuildHeightMesh: 0
---- !u!4 &1784290785
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784290783}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.440054, y: 31.307781, z: 3.7507}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1806326244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6434,6 +6372,5 @@ SceneRoots:
   - {fileID: 1143602534}
   - {fileID: 789947025}
   - {fileID: 202659380}
-  - {fileID: 1784290785}
   - {fileID: 294771605}
   - {fileID: 775717808}
