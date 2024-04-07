@@ -26,6 +26,7 @@ public class GameData : MonoBehaviour
     public int droneCount;
     public int mealsCount;
     public LayerMask FoodHouse;
+    public InfluenceBehaviour influenceBehaviour;
 
     public ScriptableDrone currentDrone;
 
@@ -62,6 +63,8 @@ public class GameData : MonoBehaviour
         points = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
 
         currentDrone = droneTypes[0];
+
+        influenceBehaviour.SetInfluenceArea(totalInfluence);
 
         StartCoroutine(SpawnPeople());
     }
@@ -141,6 +144,7 @@ public class GameData : MonoBehaviour
         personBehaviour.peopleQuantity = 0;
         personBehaviour.peopleVisuals = null;
         personBehaviour.peopleIsInfluenced = false;
+        influenceBehaviour.SetInfluenceArea(totalInfluence);
     }
 
     public void DespawnDrone(GameObject drone)
