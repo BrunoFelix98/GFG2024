@@ -25,6 +25,8 @@ public class DroneBehaviour : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             target.GetComponent<PeopleBehaviour>().peopleQuantity -= currentCarry;
+            data.totalInfluence++;
+            data.currentInfluence++;
             data.DespawnDrone(this.gameObject);
         }
     }
