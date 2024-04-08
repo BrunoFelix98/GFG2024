@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8641177061003122151}
   - component: {fileID: 7819245739603990483}
   - component: {fileID: 1742514262761591719}
-  - component: {fileID: 431985264911689057}
   - component: {fileID: -5684282789629234594}
   m_Layer: 0
   m_Name: Drone 1
@@ -51,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 0}
   droneData: {fileID: 11400000, guid: 2902065533b59b04a95f150418146550, type: 2}
-  currentCarry: 0
-  child: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+  currentCarry: 1
+  child: {fileID: 6920291333676090665}
   target: {fileID: 0}
   agent: {fileID: 1742514262761591719}
 --- !u!195 &1742514262761591719
@@ -77,27 +76,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!65 &431985264911689057
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082047489373465882}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-5684282789629234594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -208,6 +186,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+--- !u!1 &6920291333676090665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 813817637549631780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7728740880769228691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920135100942120631, guid: 984236ece72731847b51165f54ae5b23,

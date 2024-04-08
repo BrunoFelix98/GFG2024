@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  droneData: {fileID: 0}
-  currentCarry: 0
-  child: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+  droneData: {fileID: 11400000, guid: c90e4926ed9c97a4b9940539fb3db08b, type: 2}
+  currentCarry: 1
+  child: {fileID: 6920291333676090665}
   target: {fileID: 0}
-  agent: {fileID: 0}
+  agent: {fileID: -801882108631252070}
 --- !u!195 &-801882108631252070
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -186,6 +186,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+--- !u!1 &6920291333676090665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 813817637549631780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7728740880769228691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920135100942120631, guid: 984236ece72731847b51165f54ae5b23,

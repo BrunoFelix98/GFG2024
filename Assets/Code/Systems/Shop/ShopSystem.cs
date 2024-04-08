@@ -67,10 +67,16 @@ public class ShopSystem : MonoBehaviour
             {
                 if (data.currentDrone.Equals(data.droneTypes[i]))
                 {
-                    if (data.droneTypes[i+1] != null)
+                    if (data.droneTypes[i + 1] != null)
                     {
                         data.currentInfluence -= droneUpgradeCost;
                         data.currentDrone = data.droneTypes[i + 1];
+                        data.currentDroneLevel++;
+                        break;
+                    }
+                    else
+                    {
+                        print("You already own the max level drone available.");
                     }
                 }
             }

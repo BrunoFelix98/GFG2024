@@ -1511,7 +1511,7 @@ Transform:
   m_GameObject: {fileID: 146588948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.7, y: 0, z: -37.1}
+  m_LocalPosition: {x: 45.7, y: 0, z: -44.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1790,21 +1790,29 @@ MonoBehaviour:
   - {fileID: 3767057162746148856, guid: b09a80e5dc7def842831f1a060ffd514, type: 3}
   - {fileID: 3767057162746148856, guid: e07e1d14aa977dc408be75cb411599ba, type: 3}
   - {fileID: 3767057162746148856, guid: 8b1873fd5011ed349b69268d05322e07, type: 3}
-  dronePrefab: {fileID: 1082047489373465882, guid: 5115034e47feb654f966f1ea22ead980,
-    type: 3}
   totalInfluence: 75
   currentInfluence: 3
-  droneCount: 300
-  mealsCount: 300
+  droneCount: 5
+  mealsCount: 5
   FoodHouse:
     serializedVersion: 2
     m_Bits: 8
   influenceBehaviour: {fileID: 1143602536}
+  currentDroneLevel: 1
+  dronePrefabs:
+  - {fileID: 1082047489373465882, guid: 5115034e47feb654f966f1ea22ead980, type: 3}
+  - {fileID: 1082047489373465882, guid: 41564dda5cd2f884d824c9a6b22b2983, type: 3}
+  - {fileID: 1082047489373465882, guid: 369cc75f8c2b2364c9391d8de4852134, type: 3}
+  - {fileID: 1082047489373465882, guid: b40b453e54e436340a3d75a4ad9fac8f, type: 3}
+  - {fileID: 1082047489373465882, guid: 160df60c881083f4dac179b8dcfd65cd, type: 3}
+  currentDronePrefab: {fileID: 0}
   currentDrone: {fileID: 0}
   background: {fileID: 171200992}
   eating: {fileID: 171200993}
   droneCountText: {fileID: 1361802971}
   mealsCountText: {fileID: 1152318926}
+  droneCountTextShop: {fileID: 303358802}
+  mealsCountTextShop: {fileID: 2132462858}
 --- !u!4 &171200991
 Transform:
   m_ObjectHideFlags: 0
@@ -4529,7 +4537,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10779,7 +10787,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11951,7 +11959,7 @@ Transform:
   m_GameObject: {fileID: 918114778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.6, y: 0, z: -45.3}
+  m_LocalPosition: {x: -9.95, y: 0, z: -44.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24381,7 +24389,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -27875,7 +27883,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

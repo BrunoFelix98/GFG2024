@@ -52,8 +52,8 @@ MonoBehaviour:
   peopleQuantity: 0
   peopleVisuals: {fileID: 2867801585052296209}
   peopleIsInfluenced: 0
+  hasSentDrone: 0
   child: {fileID: 2867801585052296209}
-  visual: {fileID: 2272088467758745579}
   timer: 0
   clickedMaterial: {fileID: 2100000, guid: 004a3e1d41c3bd246b333bab220d32a4, type: 2}
 --- !u!136 &2912459690078126897
@@ -75,7 +75,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 4.95
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.87}
@@ -230,12 +230,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72f7f6fb6c07c447ac45cc7862cc58a, type: 3}
---- !u!1 &2272088467758745579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6464005804656736736, guid: c72f7f6fb6c07c447ac45cc7862cc58a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5061156907761614347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2867801585052296209 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7057331091933043226, guid: c72f7f6fb6c07c447ac45cc7862cc58a,

@@ -22,7 +22,7 @@ public class DroneBehaviour : MonoBehaviour
     void Update()
     {
         // If drone reaches destination, despawn it
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 5.0f)
         {
             target.GetComponent<PeopleBehaviour>().peopleQuantity -= currentCarry;
             data.totalInfluence++;

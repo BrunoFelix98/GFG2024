@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScriptableDrone : ScriptableObject
 {
     [SerializeField]
-    private int Speed;
+    private int speed;
     [SerializeField]
     private int c_Capacity;
     [SerializeField]
@@ -21,5 +21,10 @@ public class ScriptableDrone : ScriptableObject
     {
         get => c_Capacity;
         set => c_Capacity = value;
+    }
+    public int Speed
+    {
+        get => speed;
+        set => speed = value;
     }
 }

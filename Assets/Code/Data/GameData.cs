@@ -18,7 +18,6 @@ public class GameData : MonoBehaviour
     public List<GameObject> points = new List<GameObject>();
 
     public List<GameObject> peoplePrefabs = new List<GameObject>();
-    public GameObject dronePrefab;
 
     public static GameData instance;
 
@@ -29,6 +28,10 @@ public class GameData : MonoBehaviour
     public LayerMask FoodHouse;
     public InfluenceBehaviour influenceBehaviour;
 
+    public int currentDroneLevel;
+    public GameObject[] dronePrefabs;
+    public GameObject currentDronePrefab;
+
     public ScriptableDrone currentDrone;
 
     [Header("Sons")]
@@ -38,6 +41,8 @@ public class GameData : MonoBehaviour
     [Header("Texts")]
     [SerializeField] private TMP_Text droneCountText;
     [SerializeField] private TMP_Text mealsCountText;
+    [SerializeField] private TMP_Text droneCountTextShop;
+    [SerializeField] private TMP_Text mealsCountTextShop;
 
     private void Awake()
     {
@@ -54,35 +59,9 @@ public class GameData : MonoBehaviour
     void Start()
     {
         background.Play();
-        //Create pool for people
-        for (int i = 0; i < 30; i++)
-        {
-            GameObject peopleInstance = Instantiate(peoplePrefabs[0], transform.position, Quaternion.identity);
-            inactivePeoplePool.Add(peopleInstance);
-            peopleInstance.SetActive(false);
-        }
 
-        for (int i = 0; i < 30; i++)
-        {
-            GameObject peopleInstance = Instantiate(peoplePrefabs[1], transform.position, Quaternion.identity);
-            inactivePeoplePool.Add(peopleInstance);
-            peopleInstance.SetActive(false);
-        }
-
-        for (int i = 0; i < 30; i++)
-        {
-            GameObject peopleInstance = Instantiate(peoplePrefabs[2], transform.position, Quaternion.identity);
-            inactivePeoplePool.Add(peopleInstance);
-            peopleInstance.SetActive(false);
-        }
-
-        //Create pool for drones
-        for (int i = 0; i < 2000; i++)
-        {
-            GameObject droneInstance = Instantiate(dronePrefab, transform.position, Quaternion.identity);
-            inactiveDronePool.Add(droneInstance);
-            droneInstance.SetActive(false);
-        }
+        currentDroneLevel = 0;
+        currentDronePrefab = dronePrefabs[0];
 
         points = GameObject.FindGameObjectsWithTag("SpawnPoint").ToList();
 
@@ -90,14 +69,77 @@ public class GameData : MonoBehaviour
 
         influenceBehaviour.SetInfluenceArea(totalInfluence);
 
-        StartCoroutine(SpawnPeople());
+        //Create pool for people
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject peopleInstance = Instantiate(peoplePrefabs[0], transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
+            peopleInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject peopleInstance = Instantiate(peoplePrefabs[1], transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
+            peopleInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject peopleInstance = Instantiate(peoplePrefabs[2], transform.position, Quaternion.identity);
+            inactivePeoplePool.Add(peopleInstance);
+            peopleInstance.SetActive(false);
+        }
+
+        //Create pool for drones
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject droneInstance = Instantiate(dronePrefabs[0], transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
+            droneInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject droneInstance = Instantiate(dronePrefabs[1], transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
+            droneInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject droneInstance = Instantiate(dronePrefabs[2], transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
+            droneInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject droneInstance = Instantiate(dronePrefabs[3], transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
+            droneInstance.SetActive(false);
+        }
+
+        for (int i = 0; i < 500; i++)
+        {
+            GameObject droneInstance = Instantiate(dronePrefabs[4], transform.position, Quaternion.identity);
+            inactiveDronePool.Add(droneInstance);
+            droneInstance.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
     {
+        if (inactivePeoplePool.Count.Equals(1500))
+        {
+            StartCoroutine(SpawnPeople());
+        }
+
         VerifyFoodHouses();
         droneCountText.text = droneCount.ToString();
         mealsCountText.text = mealsCount.ToString();
+        droneCountTextShop.text = droneCount.ToString();
+        mealsCountTextShop.text = mealsCount.ToString();
     }
 
     void VerifyFoodHouses()
@@ -118,12 +160,12 @@ public class GameData : MonoBehaviour
 
     IEnumerator SpawnPeople()
     {
-        for (int i = 0; i < 15; i++) //To be changed to a variable so that it can be dependant on the influence size
+        for (int i = 0; i < 15; i++)
         {
-            yield return new WaitForSeconds(20f);
             SpawnPerson();
+            yield return new WaitForSeconds(5f);
         }
-        
+        yield return new WaitForSeconds(15f);
     }
 
 
@@ -131,7 +173,7 @@ public class GameData : MonoBehaviour
     public void SpawnPerson()
     {
         int random = Random.Range(0, peopleTypes.Count);
-        GameObject newPerson = inactivePeoplePool[random * 30];
+        GameObject newPerson = inactivePeoplePool[random * 500];
         newPerson.SetActive(true);
         inactivePeoplePool.Remove(newPerson);
 
@@ -147,15 +189,18 @@ public class GameData : MonoBehaviour
     //Do the opposite of this for "DespawnDrone"
     public void SpawnDrone(GameObject target, int quantity)
     {
-        GameObject newDrone = inactiveDronePool[0];
+        GameObject newDrone = inactiveDronePool[(currentDroneLevel * 500) + 1];
         inactiveDronePool.Remove(newDrone);
         newDrone.transform.position = transform.position;
         DroneBehaviour newDroneBehaviour = newDrone.GetComponent<DroneBehaviour>();
         newDrone.SetActive(true);
-        newDroneBehaviour.agent.SetDestination(target.transform.position);
         newDroneBehaviour.droneData = currentDrone;
+        newDroneBehaviour.agent.SetDestination(target.transform.position);
+        newDroneBehaviour.agent.acceleration = newDroneBehaviour.droneData.Speed;
+        newDroneBehaviour.agent.speed = newDroneBehaviour.droneData.Speed;
         newDroneBehaviour.currentCarry = quantity;
         newDroneBehaviour.target = target;
+        droneCount--;
     }
 
     public void DespawnPeople(GameObject people)
@@ -181,8 +226,8 @@ public class GameData : MonoBehaviour
         drone.SetActive(false);
         drone.transform.position = this.transform.position;
         inactiveDronePool.Add(drone);
-        droneCount--;
         droneBehaviour.droneData = null;
+        droneCount++;
     }
 
     public void SpawnIcon(HouseBehaviour house)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fe75e1699e5334583672117f76c3a7, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  Speed: 2
+  speed: 20
   c_Capacity: 2
   currentLoad: 0

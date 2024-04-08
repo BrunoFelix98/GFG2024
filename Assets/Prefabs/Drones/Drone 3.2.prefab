@@ -32,9 +32,9 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 7728740880769228691}
   - {fileID: 4177144040851323376}
   - {fileID: 714438663190501940}
-  - {fileID: 7728740880769228691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7819245739603990483
@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 0}
   droneData: {fileID: 11400000, guid: deb1641260d7a084f82aa722d3fb30b4, type: 2}
-  currentCarry: 0
-  child: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+  currentCarry: 2
+  child: {fileID: 6920291333676090665}
   target: {fileID: 0}
-  agent: {fileID: 0}
+  agent: {fileID: 764947615143158845}
 --- !u!195 &764947615143158845
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -187,6 +187,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984236ece72731847b51165f54ae5b23, type: 3}
+--- !u!1 &6920291333676090665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7728901096951622669, guid: 984236ece72731847b51165f54ae5b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 813817637549631780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7728740880769228691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920135100942120631, guid: 984236ece72731847b51165f54ae5b23,
